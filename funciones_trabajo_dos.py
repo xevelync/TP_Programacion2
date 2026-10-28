@@ -83,24 +83,28 @@ def cambiar_apuesta(puntaje_inicial:int, apuesta:int):
 def sumar_mano(mano:list) -> int:
     """Documentacion
     """
-
     puntaje_total = 0
     cantidad_ases = 0
-
-    for carta in mano:
+    indice = 0
+    
+    while indice < len(mano):
+        carta = mano[indice]
+        
         if carta == "10" or carta == "J" or carta == "Q" or carta == "K":
             puntaje_total += 10
         elif carta == "A":
             puntaje_total += 11
             cantidad_ases += 1
         else:
-            total += int(carta)
+            puntaje_total += int(carta)
+            
+        indice += 1
 
     while puntaje_total > 21 and cantidad_ases > 0:
-        total -= 10
-        cantidad_ases += 1
+        puntaje_total -= 10
+        cantidad_ases -= 1
 
-    return total
+    return puntaje_total
 
 def obtener_carta(mazo:list):
     """Documentacion
